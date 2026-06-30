@@ -1,0 +1,24 @@
+{
+  "name": "Bharanidharan",
+  "fullName": "Bharanidharan G",
+  "title": "Backend Systems & AI Engineer",
+  "subtitle": "B.Tech. Computer Science and Business Systems",
+  "location": "Coimbatore, India",
+  "email": "bharani232427@gmail.com",
+  "phone": "+91 9042124983",
+  "summary": "Computer Science undergraduate currently interning at Stats Perform as a QAI Intern, with hands-on experience building production-grade backend systems, cloud-native microservices on AWS, and AI-powered solutions including autonomous agents, RAG pipelines, and LLM integrations. Proven ability to own the full software lifecycle from design to deployment, with a strong foundation in DSA, OOP, distributed systems, and Agile methodologies.",
+  "taglines": [
+    "Building production-grade backend systems",
+    "Orchestrating AI agents with LangGraph",
+    "Shipping cloud-native microservices on AWS",
+    "Turning ideas into scalable APIs"
+  ],  
+  "resumeUrl": "/resume.pdf",
+  "social": {
+    "github": "https://github.com/bharani-coder-27",
+    "linkedin": "https://linkedin.com/in/bharanidharan27",
+    "twitter": "",
+    "email": "mailto:bharani232427@gmail.com"
+  },
+  "availability": "Currently interning @ Stats Perform · Open to collaborations"
+}

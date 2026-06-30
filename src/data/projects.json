@@ -1,0 +1,103 @@
+[
+  {
+    "id": "proj-1",
+    "title": "AI-Powered Academic Research Assistant",
+    "description": "Multi-document AI research pipeline using LLMs and FAISS vector search to auto-extract, summarize, and compare research papers across key sections.",
+    "longDescription": "Built a full research intelligence system that ingests PDFs, chunks and embeds them into FAISS, then uses LLMs to extract structured summaries across abstract, methodology, and results sections. NLP-based topic clustering surfaces contradictions across studies automatically.",
+    "category": "AI/LLM",
+    "techStack": ["Python", "React", "FastAPI", "MongoDB", "FAISS", "LangChain", "NLP"],
+    "bullets": [
+      "Built a multi-document AI research pipeline using LLMs and FAISS vector search to auto-extract, summarize, and compare papers across 5+ key sections — reducing literature review time by 60%+",
+      "Engineered NLP-based topic clustering and semantic similarity detection to group papers into research categories and automatically surface contradictions across studies, improving cross-paper analysis accuracy by ~40%"
+    ],
+    "github": "https://github.com/bharani-coder-27/research-assist",
+    "demo": "",
+    "featured": true,
+    "status": "Completed"
+  },
+  {
+    "id": "proj-2",
+    "title": "Accessible Mobility Booking System (Whe-Friend)",
+    "description": "Full-stack mobile booking platform enabling differently-abled users to schedule transportation with real-time seat allocation across 10+ trip management flows.",
+    "longDescription": "A React Native mobile app with a Node.js/Express backend and MySQL database. Built with accessibility-first principles — reduced booking steps from 6 to 3 through streamlined UX and backend workflow optimization. Full JWT auth, input validation, and structured error handling throughout.",
+    "category": "Mobile",
+    "techStack": ["React Native", "Node.js", "Express.js", "MySQL", "JWT", "TypeScript"],
+    "bullets": [
+      "Developed and shipped a full-stack mobile booking platform using React Native, Node.js, and MySQL — enabling differently-abled users to schedule transportation with real-time seat allocation across 10+ trip management flows",
+      "Engineered 15+ RESTful API endpoints with input validation, JWT authentication, and structured error handling — maintaining 100% data consistency across booking and cancellation transactions during testing",
+      "Independently translated real-world accessibility requirements into technical features, reducing booking steps from 6 to 3 through streamlined UX and backend workflow optimization"
+    ],
+    "github": "https://github.com/bharani-coder-27/Accessible-Mobility-Whe-Friend-App",
+    "demo": "",
+    "featured": true,
+    "status": "Completed"
+  },
+  {
+    "id": "proj-3",
+    "title": "Civic Report System — Smart City Platform",
+    "description": "Smart city platform for reporting and tracking civic complaints like potholes and waste, with a citizen mobile app and an admin web portal.",
+    "longDescription": "Full-stack civic engagement platform built with React Native for citizens and a ReactJS admin portal. Backend powered by Node.js, Express, Prisma ORM, and PostgreSQL. Supports OAuth2 and JWT auth, real-time status tracking, and role-based access for citizens and administrators.",
+    "category": "Full-Stack",
+    "techStack": ["TypeScript", "React Native", "React.js", "Node.js", "PostgreSQL", "Prisma", "OAuth2", "JWT"],
+    "bullets": [
+      "Designed and built a dual-interface civic platform — a React Native mobile app for citizens and a ReactJS admin portal — covering the full complaint lifecycle from submission to resolution",
+      "Integrated OAuth2 and JWT-based authentication with role-based access control, securing admin and citizen flows independently",
+      "Implemented Prisma ORM with PostgreSQL to manage relational complaint data, enabling real-time status updates and assignment workflows"
+    ],
+    "github": "https://github.com/bharani-coder-27/Civic_Report_System",
+    "demo": "",
+    "featured": true,
+    "status": "Completed"
+  },
+  {
+    "id": "proj-4",
+    "title": "IntelliBrowse — AI Web Navigator Agent",
+    "description": "AI-powered web navigation agent that uses local LLMs and browser automation (Playwright) to convert natural language queries into structured web insights.",
+    "longDescription": "Combines a FastAPI backend with Playwright browser automation and a locally-hosted Mistral-7B model via Ollama. The agent interprets natural language instructions, navigates real web pages, extracts relevant data, and returns structured summaries through a React frontend. Supports OAuth2-secured sessions.",
+    "category": "AI/LLM",
+    "techStack": ["Python", "FastAPI", "Playwright", "Ollama", "Mistral-7B", "React.js", "OAuth2", "TypeScript"],
+    "bullets": [
+      "Built an end-to-end AI browsing agent that translates natural language queries into structured web scraping tasks using Playwright and a locally-run Mistral-7B LLM via Ollama",
+      "Designed a FastAPI backend with OAuth2-secured endpoints, orchestrating LLM inference and browser automation in a single stateful workflow",
+      "Delivered structured, readable insights from raw web pages through a React frontend, supporting complex multi-step navigation instructions"
+    ],
+    "github": "https://github.com/bharani-coder-27/IntelliBrowse",
+    "demo": "",
+    "featured": false,
+    "status": "Completed"
+  },
+  {
+    "id": "proj-5",
+    "title": "Smart Vision System — AI Assistive Tool",
+    "description": "AI-driven assistive vision system for visually impaired individuals, combining real-time object detection, voice commands, and speech feedback.",
+    "longDescription": "Leverages TensorFlow's SSD-MobileNet model for real-time object detection via OpenCV, paired with pyttsx3 text-to-speech and speech_recognition for fully voice-driven interaction. The system acts as a personal guide — detecting and narrating the environment through audio in real time.",
+    "category": "AI/LLM",
+    "techStack": ["Python", "TensorFlow", "OpenCV", "SSD-MobileNet", "pyttsx3", "Speech Recognition"],
+    "bullets": [
+      "Engineered a real-time assistive vision pipeline using TensorFlow's SSD-MobileNet and OpenCV to detect and classify objects in the environment at interactive frame rates",
+      "Built a fully voice-driven interaction layer using speech_recognition for command intake and pyttsx3 for audio feedback — enabling hands-free, screen-free operation",
+      "Optimized the detection pipeline for low-latency performance on standard hardware, prioritizing objects relevant to safe navigation"
+    ],
+    "github": "https://github.com/bharani-coder-27/Assistive-vision-system",
+    "demo": "",
+    "featured": false,
+    "status": "Completed"
+  },
+  {
+    "id": "proj-6",
+    "title": "Identity Reconciliation Backend",
+    "description": "Intelligent identity reconciliation service that deduplicates user records across email and phone, returning unified contact profiles via REST API.",
+    "longDescription": "Node.js/Express service backed by Prisma ORM and PostgreSQL, built to solve the Bitespeed identity resolution problem. Implements a graph-traversal-style reconciliation algorithm to link primary and secondary contacts, returning a fully consolidated contact object for any given email or phone input.",
+    "category": "Backend",
+    "techStack": ["Node.js", "Express.js", "Prisma", "PostgreSQL", "REST API", "JavaScript"],
+    "bullets": [
+      "Designed and implemented an identity reconciliation API that deduplicates user records across email and phone identifiers using a graph-linking algorithm with primary/secondary contact hierarchy",
+      "Built with Prisma ORM on PostgreSQL ensuring ACID-compliant transactions when merging or creating contact records under concurrent requests",
+      "Engineered clean MVC architecture with structured error handling and RESTful conventions — achieving deterministic reconciliation across all edge cases in the test suite"
+    ],
+    "github": "https://github.com/bharani-coder-27/Identity-Reconciliation-Backend",
+    "demo": "",
+    "featured": false,
+    "status": "Completed"
+  }
+]

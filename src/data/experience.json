@@ -1,0 +1,35 @@
+[
+  {
+    "id": "exp-1",
+    "company": "Stats Perform",
+    "role": "QAI Intern",
+    "type": "Internship",
+    "startDate": "Jun 2026",
+    "endDate": "Present",
+    "current": true,
+    "location": "Chennai, India",
+    "description": "Working within the Quality AI function at a leading sports data and analytics company, focused on ensuring the reliability and accuracy of AI-driven sports data pipelines.",
+    "bullets": [
+      "Contributing to QA processes for AI and data systems that power sports analytics products used by professional leagues and broadcasters worldwide",
+      "Collaborating with cross-functional teams to validate machine learning model outputs and data pipeline integrity across large-scale sports datasets"
+    ],
+    "techStack": ["QA", "AI Testing", "Data Validation", "Sports Analytics"]
+  },
+  {
+    "id": "exp-2",
+    "company": "Baloon Startup",
+    "role": "App Developer Intern — Backend System & Microservices",
+    "type": "Internship",
+    "startDate": "Jan 2026",
+    "endDate": "Feb 2026",
+    "current": false,
+    "location": "Remote",
+    "description": "Architected and delivered a production-ready backend from scratch, owning the full stack from API design to cloud deployment.",
+    "bullets": [
+      "Architected and delivered a production-ready backend using Node.js and Express, building 20+ REST API endpoints with scalable microservices architecture, API Gateway pattern, and authored technical API documentation reviewed via GitHub PRs",
+      "Implemented JWT auth (access/refresh tokens), HTTP-only cookies, Google & X OAuth, idempotency keys, and rate limiting — enforcing stateless, token-scoped session control",
+      "Containerized 3+ fault-tolerant backend services using Docker and Docker Compose, deployed on AWS EC2 with automated CI/CD pipelines via GitHub Actions — cutting manual deployment effort by ~70% and achieving API response times under 150ms in production"
+    ],
+    "techStack": ["Node.js", "Express.js", "Docker", "Docker Compose", "AWS EC2", "GitHub Actions", "JWT", "OAuth", "REST APIs"]
+  }
+]

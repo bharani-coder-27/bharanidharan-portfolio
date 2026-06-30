@@ -1,0 +1,91 @@
+[
+  {
+    "category": "AI & LLM",
+    "icon": "🤖",
+    "color": "cyan",
+    "items": [
+      "AI Agents (LangGraph)",
+      "ReAct",
+      "RAG Pipelines",
+      "ChromaDB",
+      "FAISS",
+      "MCP Servers",
+      "Ollama",
+      "NLP",
+      "Vector Databases"
+    ]
+  },
+  {
+    "category": "Backend",
+    "icon": "⚙️",
+    "color": "purple",
+    "items": [
+      "Node.js",
+      "Express.js",
+      "FastAPI",
+      "REST APIs",
+      "Microservices (MSA)",
+      "API Gateway",
+      "JWT & OAuth",
+      "Rate Limiting",
+      "Idempotency"
+    ]
+  },
+  {
+    "category": "Cloud & DevOps",
+    "icon": "☁️",
+    "color": "green",
+    "items": [
+      "AWS EC2",
+      "AWS S3",
+      "AWS CloudWatch",
+      "Azure (AZ-900)",
+      "Docker",
+      "Docker Compose",
+      "GitHub Actions",
+      "CI/CD Pipelines",
+      "Git"
+    ]
+  },
+  {
+    "category": "Databases",
+    "icon": "🗄️",
+    "color": "cyan",
+    "items": [
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Prisma ORM",
+      "FAISS (Vector DB)",
+      "ChromaDB"
+    ]
+  },
+  {
+    "category": "Frontend & Mobile",
+    "icon": "🎨",
+    "color": "purple",
+    "items": [
+      "React Native",
+      "ReactJS",
+      "HTML5",
+      "CSS3",
+      "Figma"
+    ]
+  },
+  {
+    "category": "Languages & CS",
+    "icon": "🛠️",
+    "color": "green",
+    "items": [
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "Java",
+      "C",
+      "DSA",
+      "OOP",
+      "SDLC",
+      "Agile"
+    ]
+  }
+]

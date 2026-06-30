@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ach-1",
+    "title": "AWS Cloud Practitioner Certified",
+    "description": "Proficient in foundational cloud concepts, security, and architecture on AWS.",
+    "date": "2024",
+    "issuingBody": "Amazon Web Services",
+    "type": "Certification",
+    "credentialUrl": "",
+    "badgeColor": "cyan"
+  },
+  {
+    "id": "ach-2",
+    "title": "Microsoft Azure Fundamentals (AZ-900)",
+    "description": "Validated cloud concepts, Azure services, security, privacy, compliance, and governance.",
+    "date": "2024",
+    "issuingBody": "Microsoft",
+    "type": "Certification",
+    "credentialUrl": "",
+    "badgeColor": "cyan"
+  },
+  {
+    "id": "ach-3",
+    "title": "1st Prize — TECH HAVEN 2K25",
+    "description": "Recognized for innovative project presentation at the inter-college technical event.",
+    "date": "2025-09-25",
+    "issuingBody": "TECH HAVEN 2K25",
+    "type": "Hackathon",
+    "credentialUrl": "",
+    "badgeColor": "purple"
+  },
+  {
+    "id": "ach-4",
+    "title": "NPTEL Java — Silver Elite",
+    "description": "Top performer in Object-Oriented Programming & Java development — Silver Elite badge.",
+    "date": "2024",
+    "issuingBody": "NPTEL / IIT",
+    "type": "Certification",
+    "credentialUrl": "",
+    "badgeColor": "green"
+  },
+  {
+    "id": "ach-5",
+    "title": "LeetCode 330+ Problems",
+    "description": "Demonstrated consistent problem-solving ability in Data Structures & Algorithms.",
+    "date": "2024",
+    "issuingBody": "LeetCode",
+    "type": "Achievement",
+    "credentialUrl": "https://leetcode.com",
+    "badgeColor": "green"
+  },
+  {
+    "id": "ach-6",
+    "title": "Linguaskill — Cambridge B1",
+    "description": "Certified in Reading, Writing, Speaking, and Listening at B1 proficiency level.",
+    "date": "2024",
+    "issuingBody": "Cambridge Assessment English",
+    "type": "Certification",
+    "credentialUrl": "",
+    "badgeColor": "purple"
+  }
+]

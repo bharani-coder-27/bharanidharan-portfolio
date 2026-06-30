@@ -1,0 +1,26 @@
+{
+  "degree": "B.Tech. Computer Science and Business Systems",
+  "institution": "Sri Krishna College of Engineering and Technology",
+  "university": "Anna University",
+  "location": "Coimbatore, Tamil Nadu",
+  "startYear": "2023",
+  "endYear": "2027",
+  "cgpa": "8.78 / 10",
+  "status": "Pursuing",
+  "highlights": [
+    "Specialization in AI/ML, cloud computing, and distributed systems",
+    "1st Prize winner at TECH HAVEN 2K25 inter-college technical event",
+    "Final year project: AI-powered academic research assistant with RAG and LLM orchestration"
+  ],
+  "relevantCourses": [
+    "Data Structures & Algorithms",
+    "Object-Oriented Programming",
+    "Operating Systems",
+    "Database Management Systems",
+    "Computer Networks",
+    "Cloud Computing",
+    "Machine Learning",
+    "Software Engineering & SDLC",
+    "Agile Methodologies"
+  ]
+}
