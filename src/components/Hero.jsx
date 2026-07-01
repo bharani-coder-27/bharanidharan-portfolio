@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { useTypingEffect } from '../hooks/useTypingEffect'
 import profile from '../data/profile.json'
+import { TECH } from '../data/techStack'
+import { IconChip } from './TechIcon'
 
 /* ── Social icons ── */
 const socialIcons = {
@@ -27,112 +29,195 @@ const socialGlow = {
   email:    'rgba(0,212,255,0.18)',
 }
 
-/* ── Tech stack for the right panel ── */
-const TECH = [
-  { name: 'Python',        color: '#4b8bbe', l: 44, t: 4,  dur: 3.8, del: 0.0, amp: 10 },
-  { name: 'TypeScript',    color: '#3178c6', l: 4,  t: 14, dur: 4.2, del: 0.5, amp: 8  },
-  { name: 'Kubernetes',      color: '#d63aff', l: 76, t: 10, dur: 3.5, del: 0.9, amp: 9  },
-  { name: 'Docker',        color: '#2496ed', l: 2,  t: 40, dur: 4.0, del: 0.3, amp: 11 },
-  { name: 'React',         color: '#61dafb', l: 78, t: 36, dur: 3.6, del: 0.6, amp: 7  },
-  { name: 'FastAPI',       color: '#009688', l: 80, t: 62, dur: 4.3, del: 1.0, amp: 9  },
-  { name: 'LangGraph',     color: '#7c3aed', l: 3,  t: 62, dur: 3.9, del: 0.5, amp: 8  },
-  { name: 'AWS',           color: '#ff9900', l: 12, t: 82, dur: 4.1, del: 0.7, amp: 10 },
-  { name: 'Node.js',       color: '#68a063', l: 50, t: 86, dur: 3.7, del: 0.2, amp: 8  },
-  { name: 'PostgreSQL',    color: '#336791', l: 74, t: 80, dur: 4.4, del: 0.9, amp: 7  },
-  { name: 'MongoDB',       color: '#47a248', l: 30, t: 92, dur: 3.5, del: 1.2, amp: 9  },
-  { name: 'GitHub Actions',color: '#2088ff', l: 58, t: 94, dur: 4.0, del: 0.4, amp: 8  },
-]
+/* ── Tech constellation: real logos orbiting a live terminal ── */
+const ORBIT_DUR = 48 // seconds per full revolution
+const ORBIT_R = 188  // outer ring radius
 
-function TechBadge({ name, color, l, t, dur, del, amp }) {
+function OrbitChip({ item, angle, radius, index }) {
+  const x = Math.cos(angle) * radius
+  const y = Math.sin(angle) * radius
   return (
-    <motion.div
+    <div
       className="absolute"
-      style={{ left: `${l}%`, top: `${t}%` }}
-      animate={{ y: [0, -amp, 0], rotate: [0, 1.5, 0, -1.5, 0] }}
-      transition={{ duration: dur, repeat: Infinity, ease: 'easeInOut', delay: del }}
+      style={{ left: '50%', top: '50%', transform: `translate(-50%,-50%) translate(${x}px, ${y}px)` }}
     >
+      {/* counter-rotate so the chip stays upright while the ring spins */}
       <motion.div
-        whileHover={{ scale: 1.12, y: -4 }}
-        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg cursor-default"
-        style={{
-          background: `${color}14`,
-          border: `1px solid ${color}35`,
-          backdropFilter: 'blur(8px)',
-        }}
+        animate={{ rotate: -360 }}
+        transition={{ duration: ORBIT_DUR, repeat: Infinity, ease: 'linear' }}
       >
-        <span
-          className="w-2 h-2 rounded-full shrink-0"
-          style={{ background: color, boxShadow: `0 0 6px ${color}` }}
-        />
-        <span className="font-mono text-xs whitespace-nowrap" style={{ color }}>
-          {name}
-        </span>
+        {/* gentle independent float + hover pop */}
+        <motion.div
+          animate={{ y: [0, -6, 0] }}
+          transition={{ duration: 3 + (index % 4) * 0.5, repeat: Infinity, ease: 'easeInOut', delay: index * 0.18 }}
+          whileHover={{ scale: 1.22, zIndex: 30 }}
+          className="group relative cursor-default"
+        >
+          <IconChip item={item} size={54} iconSize={29} />
+          {/* label appears on hover */}
+          <span
+            className="absolute left-1/2 -bottom-6 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] px-2 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+            style={{ color: item.color, background: `${item.color}12`, border: `1px solid ${item.color}30` }}
+          >
+            {item.name}
+          </span>
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </div>
   )
 }
 
-function TechVisual() {
+/* small drifting sparkle to fill negative space */
+function Particle({ x, y, size, color, dur, delay }) {
   return (
-    <div className="relative w-full h-[520px]">
-      {/* Orbital ring 1 */}
-      <motion.div
-        className="absolute rounded-full"
-        style={{
-          width: 220, height: 220,
-          left: '50%', top: '48%',
-          transform: 'translate(-50%,-50%)',
-          border: '1px solid rgba(0,212,255,0.06)',
-        }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-      />
-      {/* Orbital ring 2 */}
-      <motion.div
-        className="absolute rounded-full"
-        style={{
-          width: 370, height: 370,
-          left: '50%', top: '48%',
-          transform: 'translate(-50%,-50%)',
-          border: '1px solid rgba(139,92,246,0.05)',
-        }}
-        animate={{ rotate: -360 }}
-        transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-      />
+    <motion.span
+      className="absolute rounded-full"
+      style={{ left: `${x}%`, top: `${y}%`, width: size, height: size, background: color, boxShadow: `0 0 8px ${color}` }}
+      animate={{ opacity: [0, 0.9, 0], scale: [0.6, 1, 0.6], y: [0, -14, 0] }}
+      transition={{ duration: dur, repeat: Infinity, ease: 'easeInOut', delay }}
+    />
+  )
+}
 
-      {/* Central glow */}
+const PARTICLES = [
+  { x: 12, y: 18, size: 3, color: '#00d4ff', dur: 4.5, delay: 0.0 },
+  { x: 86, y: 24, size: 2, color: '#8b5cf6', dur: 5.2, delay: 0.8 },
+  { x: 22, y: 78, size: 2, color: '#12b8a6', dur: 4.8, delay: 1.4 },
+  { x: 78, y: 82, size: 3, color: '#ff2d78', dur: 5.6, delay: 0.4 },
+  { x: 50, y: 8,  size: 2, color: '#00d4ff', dur: 4.2, delay: 1.1 },
+  { x: 8,  y: 50, size: 2, color: '#8b5cf6', dur: 5.0, delay: 0.6 },
+  { x: 92, y: 56, size: 3, color: '#12b8a6', dur: 4.6, delay: 1.8 },
+  { x: 40, y: 92, size: 2, color: '#00d4ff', dur: 5.4, delay: 0.2 },
+]
+
+function TechOrbit() {
+  const N = TECH.length
+  const R = ORBIT_R
+
+  // outer node coordinates for the constellation lines
+  const D = R * 2 + 60
+  const c = D / 2
+  const pts = TECH.map((_, i) => {
+    const a = (i / N) * Math.PI * 2 - Math.PI / 2
+    return [c + Math.cos(a) * R, c + Math.sin(a) * R]
+  })
+  const polyPoints = pts.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ')
+
+  return (
+    <div className="relative w-full h-[560px]">
+      {/* soft ambient wash to fill the panel */}
       <div
-        className="absolute rounded-full"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          width: 100, height: 100,
-          left: '50%', top: '48%',
-          transform: 'translate(-50%,-50%)',
-          background: 'radial-gradient(circle, rgba(0,212,255,0.15) 0%, rgba(139,92,246,0.08) 50%, transparent 70%)',
-          filter: 'blur(12px)',
+          background:
+            'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,212,255,0.05), transparent 65%)',
         }}
       />
 
-      {/* Central code card */}
+      {/* twinkling particles */}
+      {PARTICLES.map((p, i) => <Particle key={i} {...p} />)}
+
+      {/* concentric ring guides */}
+      {[R * 2 + 12, R * 1.4, R * 0.66].map((d, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            width: d, height: d, left: '50%', top: '50%',
+            transform: 'translate(-50%,-50%)',
+            border: `1px solid ${i === 0 ? 'rgba(0,212,255,0.10)' : i === 1 ? 'rgba(139,92,246,0.08)' : 'rgba(0,212,255,0.06)'}`,
+          }}
+          animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
+          transition={{ duration: 52 + i * 14, repeat: Infinity, ease: 'linear' }}
+        />
+      ))}
+
+      {/* central glow */}
       <motion.div
-        className="absolute rounded-xl overflow-hidden"
+        className="absolute rounded-full pointer-events-none"
         style={{
-          width: 170, left: '50%', top: '48%',
+          width: 150, height: 150, left: '50%', top: '50%',
           transform: 'translate(-50%,-50%)',
-          background: 'rgba(255,255,255,0.03)',
-          border: '1px solid rgba(0,212,255,0.12)',
+          background: 'radial-gradient(circle, rgba(0,212,255,0.20) 0%, rgba(139,92,246,0.10) 45%, transparent 70%)',
+          filter: 'blur(16px)',
+        }}
+        animate={{ scale: [1, 1.14, 1], opacity: [0.7, 1, 0.7] }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* rotating ring: constellation lines + real tech logos */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{ rotate: 360 }}
+        transition={{ duration: ORBIT_DUR, repeat: Infinity, ease: 'linear' }}
+      >
+        {/* constellation web */}
+        <svg
+          width={D}
+          height={D}
+          className="absolute left-1/2 top-1/2 pointer-events-none"
+          style={{ transform: 'translate(-50%,-50%)', overflow: 'visible' }}
+        >
+          <polygon points={polyPoints} fill="none" stroke="rgba(0,212,255,0.12)" strokeWidth="1" />
+          {pts.map((p, i) => (
+            <line key={i} x1={c} y1={c} x2={p[0]} y2={p[1]} stroke="rgba(139,92,246,0.06)" strokeWidth="1" />
+          ))}
+        </svg>
+
+        {TECH.map((item, i) => (
+          <OrbitChip
+            key={item.name}
+            item={item}
+            index={i}
+            radius={R}
+            angle={(i / N) * Math.PI * 2 - Math.PI / 2}
+          />
+        ))}
+      </motion.div>
+
+      {/* counter-rotating inner ring of small dots */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 34, repeat: Infinity, ease: 'linear' }}
+      >
+        {Array.from({ length: 6 }).map((_, i) => {
+          const a = (i / 6) * Math.PI * 2
+          const r = R * 0.4
+          return (
+            <span
+              key={i}
+              className="absolute w-1.5 h-1.5 rounded-full"
+              style={{
+                left: '50%', top: '50%',
+                transform: `translate(-50%,-50%) translate(${Math.cos(a) * r}px, ${Math.sin(a) * r}px)`,
+                background: i % 2 ? 'rgba(139,92,246,0.6)' : 'rgba(0,212,255,0.6)',
+                boxShadow: i % 2 ? '0 0 8px rgba(139,92,246,0.8)' : '0 0 8px rgba(0,212,255,0.8)',
+              }}
+            />
+          )
+        })}
+      </motion.div>
+
+      {/* central live terminal */}
+      <motion.div
+        className="absolute rounded-xl overflow-hidden z-10"
+        style={{
+          width: 184, left: '50%', top: '50%',
+          transform: 'translate(-50%,-50%)',
+          background: 'rgba(10,10,20,0.78)',
+          border: '1px solid rgba(0,212,255,0.16)',
           backdropFilter: 'blur(16px)',
         }}
-        animate={{ boxShadow: ['0 0 20px rgba(0,212,255,0.05)', '0 0 40px rgba(0,212,255,0.12)', '0 0 20px rgba(0,212,255,0.05)'] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ boxShadow: ['0 0 24px rgba(0,212,255,0.06)', '0 0 46px rgba(0,212,255,0.14)', '0 0 24px rgba(0,212,255,0.06)'] }}
+        transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
       >
-        {/* Title bar */}
         <div className="flex items-center gap-1.5 px-3 py-2 border-b border-white/5">
           <span className="w-2 h-2 rounded-full bg-red-500/70" />
           <span className="w-2 h-2 rounded-full bg-yellow-500/70" />
           <span className="w-2 h-2 rounded-full bg-green-500/70" />
           <span className="font-mono text-[10px] text-text-muted ml-1">agent.py</span>
         </div>
-        {/* Code lines */}
         <div className="px-3 py-3 space-y-1.5">
           {[
             { text: '$ python agent.py', color: 'text-accent-green' },
@@ -145,12 +230,11 @@ function TechVisual() {
               className={`font-mono text-[10px] ${color}`}
               initial={{ opacity: 0, x: -4 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8 + delay, duration: 0.4 }}
+              transition={{ delay: 0.4 + delay, duration: 0.4 }}
             >
               {text}
             </motion.p>
           ))}
-          {/* Cursor blink */}
           <motion.span
             className="font-mono text-[10px] text-accent-cyan"
             animate={{ opacity: [1, 0, 1] }}
@@ -160,21 +244,6 @@ function TechVisual() {
           </motion.span>
         </div>
       </motion.div>
-
-      {/* Floating tech badges */}
-      {TECH.map((t) => (
-        <TechBadge key={t.name} {...t} />
-      ))}
-
-      {/* Subtle dots grid */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-20"
-        style={{
-          backgroundImage: 'radial-gradient(circle, rgba(0,212,255,0.3) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-          maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
-        }}
-      />
     </div>
   )
 }
@@ -182,11 +251,11 @@ function TechVisual() {
 /* ── Framer Motion variants ── */
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.09, delayChildren: 0 } },
 }
 const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 }
 
 /* ── Hero ── */
@@ -321,7 +390,7 @@ export default function Hero({ introComplete = true }) {
             animate={introComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
           >
-            <TechVisual />
+            <TechOrbit />
           </motion.div>
         </div>
       </div>

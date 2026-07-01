@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -10,13 +10,26 @@ import Achievements from './components/Achievements'
 import Education from './components/Education'
 import Contact from './components/Contact'
 import IntroAnimation from './components/IntroAnimation'
+import Aurora from './components/Aurora'
+import { preloadTechIcons } from './data/techStack'
 
-// Only play intro on desktop (TechVisual is hidden on mobile)
+// Only play intro on desktop (the orbit visual is hidden on mobile)
 const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024
 
 export default function App() {
   const [introComplete, setIntroComplete] = useState(!isDesktop)
   const [showIntro, setShowIntro] = useState(isDesktop)
+
+  useEffect(() => {
+    preloadTechIcons()
+  }, [])
+
+  // Lock scroll while the intro plays so the page can't move underneath it
+  useEffect(() => {
+    if (!showIntro) return
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [showIntro])
 
   const handleIntroDone = () => {
     // Set both simultaneously so overlay fade and hero reveal crossfade
@@ -26,6 +39,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-[#e2e8f0]">
+      {/* Ambient aurora — drifting colored light behind everything */}
+      <Aurora />
+
       {/* Background noise/grain overlay */}
       <div
         className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]"

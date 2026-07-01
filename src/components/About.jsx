@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 import profile from '../data/profile.json'
@@ -5,12 +6,13 @@ import profile from '../data/profile.json'
 const stats = [
   { label: 'Projects Built', value: '10+' },
   { label: 'LLM Integrations', value: '5+' },
-  { label: 'LeetCode Solved', value: '500+' },
+  { label: 'LeetCode Solved', value: '330+' },
   { label: 'Cups of Coffee', value: '∞' },
 ]
 
 export default function About() {
   const [ref, inView] = useInView()
+  const [showBio, setShowBio] = useState(false)
 
   return (
     <section id="about" className="py-24 px-4 sm:px-6">
@@ -33,9 +35,15 @@ export default function About() {
             <div className="space-y-5">
               <div className="glass-card glow-border-cyan p-6 rounded-xl">
                 <p className="font-mono text-xs text-accent-green mb-4">// profile.summary</p>
-                <p className="text-text-secondary leading-relaxed text-sm sm:text-base">
+                <p className={`text-text-secondary leading-relaxed text-sm sm:text-base sm:line-clamp-none ${showBio ? '' : 'line-clamp-5'}`}>
                   {profile.summary}
                 </p>
+                <button
+                  onClick={() => setShowBio((s) => !s)}
+                  className="sm:hidden mt-3 font-mono text-xs text-accent-cyan hover:underline"
+                >
+                  {showBio ? '▲ show less' : '▼ show more'}
+                </button>
               </div>
 
               <div className="glass-card p-6 rounded-xl border border-white/5">
