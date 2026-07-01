@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -7,8 +9,21 @@ import Skills from './components/Skills'
 import Achievements from './components/Achievements'
 import Education from './components/Education'
 import Contact from './components/Contact'
+import IntroAnimation from './components/IntroAnimation'
+
+// Only play intro on desktop (TechVisual is hidden on mobile)
+const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024
 
 export default function App() {
+  const [introComplete, setIntroComplete] = useState(!isDesktop)
+  const [showIntro, setShowIntro] = useState(isDesktop)
+
+  const handleIntroDone = () => {
+    // Set both simultaneously so overlay fade and hero reveal crossfade
+    setIntroComplete(true)
+    setShowIntro(false)
+  }
+
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-[#e2e8f0]">
       {/* Background noise/grain overlay */}
@@ -22,7 +37,7 @@ export default function App() {
       <Navbar />
 
       <main className="relative z-10">
-        <Hero />
+        <Hero introComplete={introComplete} />
 
         {/* Divider */}
         <div className="max-w-6xl mx-auto px-4">
@@ -67,6 +82,13 @@ export default function App() {
 
         <Contact />
       </main>
+
+      {/* Intro overlay rendered last so it sits on top via z-index */}
+      <AnimatePresence>
+        {showIntro && (
+          <IntroAnimation key="intro" onComplete={handleIntroDone} />
+        )}
+      </AnimatePresence>
     </div>
   )
 }

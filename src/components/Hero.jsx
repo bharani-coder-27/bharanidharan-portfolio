@@ -31,7 +31,7 @@ const socialGlow = {
 const TECH = [
   { name: 'Python',        color: '#4b8bbe', l: 44, t: 4,  dur: 3.8, del: 0.0, amp: 10 },
   { name: 'TypeScript',    color: '#3178c6', l: 4,  t: 14, dur: 4.2, del: 0.5, amp: 8  },
-  { name: 'JWT Auth',      color: '#d63aff', l: 76, t: 10, dur: 3.5, del: 0.9, amp: 9  },
+  { name: 'Kubernetes',      color: '#d63aff', l: 76, t: 10, dur: 3.5, del: 0.9, amp: 9  },
   { name: 'Docker',        color: '#2496ed', l: 2,  t: 40, dur: 4.0, del: 0.3, amp: 11 },
   { name: 'React',         color: '#61dafb', l: 78, t: 36, dur: 3.6, del: 0.6, amp: 7  },
   { name: 'FastAPI',       color: '#009688', l: 80, t: 62, dur: 4.3, del: 1.0, amp: 9  },
@@ -40,7 +40,7 @@ const TECH = [
   { name: 'Node.js',       color: '#68a063', l: 50, t: 86, dur: 3.7, del: 0.2, amp: 8  },
   { name: 'PostgreSQL',    color: '#336791', l: 74, t: 80, dur: 4.4, del: 0.9, amp: 7  },
   { name: 'MongoDB',       color: '#47a248', l: 30, t: 92, dur: 3.5, del: 1.2, amp: 9  },
-  { name: 'GitHub Actions',color: '#2088ff', l: 4,  t: 86, dur: 4.0, del: 0.4, amp: 8  },
+  { name: 'GitHub Actions',color: '#2088ff', l: 58, t: 94, dur: 4.0, del: 0.4, amp: 8  },
 ]
 
 function TechBadge({ name, color, l, t, dur, del, amp }) {
@@ -190,7 +190,7 @@ const itemVariants = {
 }
 
 /* ── Hero ── */
-export default function Hero() {
+export default function Hero({ introComplete = true }) {
   const typedText = useTypingEffect(profile.taglines, 70, 35, 2200)
 
   return (
@@ -219,7 +219,7 @@ export default function Hero() {
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            animate={introComplete ? 'visible' : 'hidden'}
           >
             {/* Status badge */}
             <motion.div variants={itemVariants} className="mb-8">
@@ -317,9 +317,9 @@ export default function Hero() {
           {/* ── RIGHT: tech visual (desktop only) ── */}
           <motion.div
             className="hidden lg:block"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={introComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
           >
             <TechVisual />
           </motion.div>
@@ -329,8 +329,8 @@ export default function Hero() {
       {/* ── Scroll indicator — always at section bottom, truly centered ── */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.6 }}
+        animate={introComplete ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ delay: introComplete ? 2 : 0, duration: 0.6 }}
         className="absolute bottom-8 z-10 flex flex-col items-center gap-2"
         style={{ left: '50%', transform: 'translateX(-50%)' }}
       >

@@ -2,18 +2,19 @@
   {
     "id": "exp-1",
     "company": "Stats Perform",
-    "role": "QAI Intern",
+    "role": "Quality Assurance Intelligence Intern",
     "type": "Internship",
     "startDate": "Jun 2026",
     "endDate": "Present",
     "current": true,
-    "location": "Chennai, India",
-    "description": "Working within the Quality AI function at a leading sports data and analytics company, focused on ensuring the reliability and accuracy of AI-driven sports data pipelines.",
+    "location": "Remote",
+    "description": "Working at the intersection of AI, automation, and elite sports technology at the market-leading sports data company, contributing to production-grade QA engineering and AI systems.",
     "bullets": [
-      "Contributing to QA processes for AI and data systems that power sports analytics products used by professional leagues and broadcasters worldwide",
-      "Collaborating with cross-functional teams to validate machine learning model outputs and data pipeline integrity across large-scale sports datasets"
+      "Building production-grade solutions combining Python, AI tooling, and test automation for sports data pipelines and analytics systems used by professional leagues and broadcasters worldwide",
+      "Leveraging LLMs and AI copilots as daily development force-multipliers — translating vague specifications into precise, testable requirements and reliable automated validation systems",
+      "Participating in AI-driven prototyping and rapid iteration at the intersection of specification-driven engineering, agentic AI design patterns, and real-world sports data simulation"
     ],
-    "techStack": ["QA", "AI Testing", "Data Validation", "Sports Analytics"]
+    "techStack": ["Python", "AI/LLM", "Prompt Engineering", "QA Automation", "Agentic AI", "Sports Analytics"]
   },
   {
     "id": "exp-2",
